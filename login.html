@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portale APP Edoardo Tubia | Accesso Riservato</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Inizializza tema prima del rendering
+    const savedTheme = localStorage.getItem('portal-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
+</head>
+<body class="login-body">
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Theme Toggle Floating Button -->
+  <button type="button" class="theme-toggle-floating" id="themeToggleBtn" title="Cambia tema Chiaro / Scuro" aria-label="Cambia tema">
+    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <div class="login-container">
+    <div class="login-card">
+      <!-- Header / Logo con Foto Personale -->
+      <div class="login-header">
+        <div class="brand-badge">
+          <div class="brand-avatar-wrap">
+            <img src="img/edo-photo.jpg" alt="Edoardo Tubia" class="user-avatar-img">
+          </div>
+        </div>
+        <h1 class="login-title">Portale APP Edoardo Tubia</h1>
+        <p class="login-subtitle">Inserisci ID e Password per accedere alla tua dashboard</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div id="loginError" class="alert alert-error" style="display: none;">
+        <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span id="loginErrorText">Credenziali non valide</span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="username">ID Utente / Username</label>
+          <div class="input-icon-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              placeholder="Es. admin" 
+              autocomplete="username" 
+              required
+              autofocus
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="password">Password</label>
+          </div>
+          <div class="input-icon-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="••••••••••••" 
+              autocomplete="current-password" 
+              required
+            >
+            <button type="button" class="btn-toggle-pass" id="btnTogglePass" title="Mostra/Nascondi password" aria-label="Toggle password">
+              <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row remember-row">
+          <label class="custom-checkbox">
+            <input type="checkbox" id="rememberMe" checked>
+            <span class="checkmark"></span>
+            <span class="checkbox-label">Mantieni sessione attiva</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-login" id="btnLogin">
+          <span class="btn-text">Accedi al Portale</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+          <div class="spinner" id="loginSpinner" style="display: none;"></div>
+        </button>
+      </form>
+
+      <!-- Security / Info Box -->
+      <div class="login-footer-info">
+        <div class="info-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mini-icon">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>Accesso protetto e privato</span>
+        </div>
+        <p class="demo-hint">
+          Credenziali predefinite: <strong>ID:</strong> <code>admin</code> &nbsp;|&nbsp; <strong>Password:</strong> <code>password123</code>
+          <br><small>(Modificabili all'interno del pannello)</small>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

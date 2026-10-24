@@ -1,0 +1,10 @@
+{
+  "adminUser": {
+    "username": "admin",
+    "password": "password123",
+    "displayName": "Edoardo Tubia"
+  },
+  "siteTitle": "Portale APP Edoardo Tubia",
+  "theme": "dark",
+  "sessionSecret": "app-monitor-secure-session-key-2026"
+}
