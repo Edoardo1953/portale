@@ -34,7 +34,7 @@
     "savedPassword": "",
     "notes": "Accesso diretto immediato senza credenziali (predisposto per autenticazione). Standalone su porta 8092",
     "iconType": "image",
-    "customLogoUrl": "img/logos/sombra.png",
+    "customLogoUrl": "img/logos/sombra.png?v=palma",
     "iconSvg": "globe",
     "iconColor": "#f59e0b",
     "bgColor": "rgba(245, 158, 11, 0.15)"
@@ -212,7 +212,7 @@
     "savedPassword": "",
     "notes": "Accesso diretto immediato integrato. Console donazioni, CdA e import estratti bancari.",
     "iconType": "image",
-    "customLogoUrl": "img/logos/banque-alimentaire.png",
+    "customLogoUrl": "img/logos/banque-alimentaire.png?v=birds",
     "iconSvg": "globe",
     "iconColor": "#ef4444",
     "bgColor": "rgba(239, 68, 68, 0.15)"
