@@ -99,13 +99,19 @@ async function loadApps() {
 
   // Fallback to static data/apps.json (GitHub Pages)
   try {
-    const res2 = await fetch('data/apps.json');
+    const res2 = await fetch('data/apps.json?v=' + Date.now());
     if (res2.ok) {
       allApps = await res2.json();
       const custom = localStorage.getItem('portal-custom-apps');
       if (custom) {
         try {
-          allApps = JSON.parse(custom);
+          const parsed = JSON.parse(custom);
+          const hasStale = parsed.some((a) => a.directUrl && a.directUrl.includes('/hosted-apps/'));
+          if (!hasStale) {
+            allApps = parsed;
+          } else {
+            localStorage.removeItem('portal-custom-apps');
+          }
         } catch (e) {}
       }
       renderStats();
