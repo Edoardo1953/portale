@@ -14,6 +14,12 @@ const SVG_ICONS = {
   film: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>`
 };
 
+function normalizeLogoUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('/img/')) return url.substring(1);
+  return url;
+}
+
 let allApps = [];
 let currentArea = 'my-apps'; // 'my-apps' (default), 'all', 'web'
 let currentFilter = 'all';    // 'all', 'direct', 'login', or 'cat:...'
@@ -225,7 +231,7 @@ function renderAppsGrid() {
       // Determine logo
       let logoHtml = '';
       if (app.customLogoUrl) {
-        logoHtml = `<img src="${escapeHtml(app.customLogoUrl)}" alt="${escapeHtml(app.title)}" class="app-card-logo-img" onerror="this.onerror=null; this.parentElement.innerHTML='🌐';">`;
+        logoHtml = `<img src="${escapeHtml(normalizeLogoUrl(app.customLogoUrl))}" alt="${escapeHtml(app.title)}" class="app-card-logo-img" onerror="this.onerror=null; this.parentElement.innerHTML='🌐';">`;
       } else {
         const svgIcon = SVG_ICONS[app.iconSvg] || SVG_ICONS.globe;
         logoHtml = svgIcon;
@@ -1005,7 +1011,7 @@ function openQuickCredsModal(appId) {
   logoWrap.style.color = iconColor;
 
   if (app.customLogoUrl) {
-    logoWrap.innerHTML = `<img src="${escapeHtml(app.customLogoUrl)}" alt="${escapeHtml(app.title)}" style="width:28px;height:28px;object-fit:contain;">`;
+    logoWrap.innerHTML = `<img src="${escapeHtml(normalizeLogoUrl(app.customLogoUrl))}" alt="${escapeHtml(app.title)}" style="width:28px;height:28px;object-fit:contain;">`;
   } else {
     logoWrap.innerHTML = SVG_ICONS[app.iconSvg] || SVG_ICONS.globe;
   }
@@ -1174,7 +1180,7 @@ function renderSummaryTable() {
 
       let logoHtml = '';
       if (app.customLogoUrl) {
-        logoHtml = `<img src="${escapeHtml(app.customLogoUrl)}" alt="${escapeHtml(app.title)}" onerror="this.onerror=null; this.parentElement.innerHTML='🌐';">`;
+        logoHtml = `<img src="${escapeHtml(normalizeLogoUrl(app.customLogoUrl))}" alt="${escapeHtml(app.title)}" onerror="this.onerror=null; this.parentElement.innerHTML='🌐';">`;
       } else {
         logoHtml = SVG_ICONS[app.iconSvg] || SVG_ICONS.globe;
       }
