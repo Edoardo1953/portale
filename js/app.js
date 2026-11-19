@@ -27,12 +27,12 @@ let searchQuery = '';
 let deletingAppId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Static / GitHub Pages Auth Check
+  // Static / GitHub Pages: Accesso diretto immediato per Edoardo su qualsiasi PC
   const isStatic = window.location.protocol === 'file:' || !window.location.port || window.location.hostname.includes('github.io');
   if (isStatic) {
-    if (!localStorage.getItem('portal-auth')) {
-      window.location.href = 'login.html';
-      return;
+    localStorage.setItem('portal-auth', 'true');
+    if (!localStorage.getItem('portal-user-name')) {
+      localStorage.setItem('portal-user-name', 'Edoardo Tubia');
     }
   }
 

@@ -9,6 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>
+    // Accesso diretto immediato
+    localStorage.setItem('portal-auth', 'true');
+    localStorage.setItem('portal-user-name', 'Edoardo Tubia');
+    window.location.replace('index.html');
+  </script>
+  <script>
     // Inizializza tema prima del rendering
     const savedTheme = localStorage.getItem('portal-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
